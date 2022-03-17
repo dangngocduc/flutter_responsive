@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'package:example/widget/main_app_bar.dart';
 import 'package:fl_responsive_guide/ui/responsive_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +19,7 @@ class _ComponentPageState extends State<ComponentPage> {
         indexTab: 1,
       ),
       body: Container(),
+      isSupportTabBar: true,
       navigation: AppDrawer(),
     );
   }

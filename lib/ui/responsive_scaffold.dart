@@ -2,7 +2,6 @@ import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 
-import 'package:fl_responsive_guide/data/fl_device_target.dart';
 import 'package:fl_responsive_guide/data/fl_size.dart';
 import 'package:fl_responsive_guide/ui/responsive_guide_widget.dart';
 
@@ -11,12 +10,14 @@ class ResponsiveScaffold extends StatefulWidget {
   final Widget body;
   final Widget? footer;
   final Widget navigation;
+  final bool isSupportTabBar;
 
   const ResponsiveScaffold({
     Key? key,
     required this.appBar,
     required this.body,
     this.footer,
+    this.isSupportTabBar = false,
     required this.navigation,
   }) : super(key: key);
 
@@ -27,60 +28,66 @@ class ResponsiveScaffold extends StatefulWidget {
 class _ResponsiveScaffoldState extends State<ResponsiveScaffold> {
   @override
   Widget build(BuildContext context) {
-    developer.log('ScaffoldReponsive build', name: 'ScaffoldReponsive');
     Widget bodyWrapper;
-    if (ResponsiveGuide.of(context).designInfo.margin is FlSizeNumber) {
+    final designInfo = ResponsiveGuide.of(context).designInfo;
+    if (designInfo.margin is FlSizeNumber) {
       bodyWrapper = Container(
         alignment: Alignment.center,
-        key: ValueKey(ResponsiveGuide.of(context).designInfo.deviceTarget),
+        key: ValueKey(designInfo.deviceTarget),
         padding: EdgeInsets.symmetric(
-            horizontal:
-                (ResponsiveGuide.of(context).designInfo.margin as FlSizeNumber)
-                    .number),
+          horizontal: (designInfo.margin as FlSizeNumber).number,
+        ),
         child: widget.body,
       );
     } else {
       bodyWrapper = Center(
-        key: ValueKey(ResponsiveGuide.of(context).designInfo.deviceTarget),
+        key: ValueKey(designInfo.deviceTarget),
         child: Container(
           alignment: Alignment.center,
           child: widget.body,
           constraints: BoxConstraints(
-              maxWidth:
-                  (ResponsiveGuide.of(context).designInfo.body as FlSizeNumber)
-                      .number),
+            maxWidth: (designInfo.body as FlSizeNumber).number,
+          ),
         ),
       );
     }
+    developer.log('designInfo.appbarHeight ${designInfo.appbarHeight}',
+        name: 'ResponsiveScaffold');
+    developer.log('designInfo.tabBarHeight ${designInfo.tabBarHeight}',
+        name: 'ResponsiveScaffold');
+    developer.log(
+        'Height : ${designInfo.appbarHeight + (designInfo.isDesktop ? 0 : (widget.isSupportTabBar ? designInfo.tabBarHeight : 0))}',
+        name: 'ResponsiveScaffold');
     return Scaffold(
       appBar: PreferredSize(
+        key: ValueKey(designInfo.deviceTarget),
         preferredSize: Size.fromHeight(
-          ResponsiveGuide.of(context).designInfo.appbarHeight +
-              (ResponsiveGuide.of(context).designInfo.deviceTarget ==
-                      DeviceTarget.desktop
+          designInfo.appbarHeight +
+              (designInfo.isDesktop
                   ? 0
-                  : kTextTabBarHeight),
+                  : (widget.isSupportTabBar ? designInfo.tabBarHeight : 0)),
         ),
         child: widget.appBar,
       ),
-      drawer: ResponsiveGuide.of(context).designInfo.deviceTarget !=
-              DeviceTarget.desktop
+      drawer: !designInfo.isDesktop
           ? Container(
-              width: 279,
+              alignment: Alignment.topCenter,
+              width: designInfo.drawerWidth,
               child: widget.navigation,
             )
           : null,
-      body: Row(
+      body: IntrinsicHeight(
+          child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (ResponsiveGuide.of(context).designInfo.deviceTarget ==
-              DeviceTarget.desktop)
+          if (designInfo.isDesktop)
             Container(
-              width: 279,
+              width: designInfo.drawerWidth,
               child: widget.navigation,
             ),
           Expanded(child: bodyWrapper)
         ],
-      ),
+      )),
       bottomNavigationBar: widget.footer,
     );
   }

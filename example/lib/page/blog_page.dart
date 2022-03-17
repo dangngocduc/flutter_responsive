@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'package:example/widget/app_drawer.dart';
 import 'package:example/widget/main_app_bar.dart';
 import 'package:fl_responsive_guide/ui/responsive_scaffold.dart';
@@ -19,6 +18,7 @@ class _BlogPageState extends State<BlogPage> {
         indexTab: 3,
       ),
       body: Container(),
+      isSupportTabBar: true,
       navigation: AppDrawer(),
     );
   }

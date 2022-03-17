@@ -4,9 +4,18 @@ import 'responsive_guide_consumer_widget.dart';
 import 'responsive_guide_widget.dart';
 
 class ResponsiveAppBar extends StatefulWidget {
-  final ResponsiveWidgetBuilder builder;
+  final ResponsivePreferredSizeWidgetBuilder? tabBarBuilder;
+  final Widget? leading;
+  final List<Widget>? actions;
+  final double? leadingWidth;
 
-  const ResponsiveAppBar({Key? key, required this.builder}) : super(key: key);
+  const ResponsiveAppBar({
+    Key? key,
+    this.tabBarBuilder,
+    this.leading,
+    this.actions,
+    this.leadingWidth,
+  }) : super(key: key);
 
   @override
   _ResponsiveAppBarState createState() => _ResponsiveAppBarState();
@@ -15,9 +24,26 @@ class ResponsiveAppBar extends StatefulWidget {
 class _ResponsiveAppBarState extends State<ResponsiveAppBar> {
   @override
   Widget build(BuildContext context) {
-    return widget.builder(
-      context,
-      ResponsiveGuide.of(context).designInfo,
+    final designInfo = ResponsiveGuide.of(context).designInfo;
+    return AppBar(
+      key: ValueKey(designInfo.deviceTarget),
+      leading: widget.leading,
+      actions: [
+        if (widget.tabBarBuilder != null && designInfo.isDesktop)
+          widget.tabBarBuilder!(context, designInfo),
+        SizedBox(
+          width: designInfo.gutters,
+        ),
+        if (widget.actions?.isNotEmpty == true) ...widget.actions!,
+        SizedBox(
+          width: designInfo.gutters,
+        )
+      ],
+      leadingWidth: widget.leadingWidth,
+      toolbarHeight: designInfo.appbarHeight,
+      bottom: (designInfo.isDesktop)
+          ? null
+          : widget.tabBarBuilder!(context, designInfo),
     );
   }
 }

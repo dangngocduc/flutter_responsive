@@ -1,4 +1,3 @@
-import 'dart:developer' as developer;
 import 'package:example/page/blog_page.dart';
 import 'package:example/page/component_page.dart';
 import 'package:example/page/design_page.dart';
@@ -20,7 +19,11 @@ class _ApplicationState extends State<Application> {
   void initState() {
     super.initState();
     _goRouter = GoRouter(
-      initialLocation: '/design',
+      redirect: (state) {
+        if (state.location == '/') {
+          return '/design';
+        }
+      },
       routes: [
         GoRoute(
             path: '/design',

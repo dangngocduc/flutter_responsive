@@ -6,10 +6,15 @@ import 'responsive_guide_widget.dart';
 typedef ResponsiveWidgetBuilder = Widget Function(
     BuildContext context, FlDesignConfig designInfo);
 
+typedef ResponsivePreferredSizeWidgetBuilder = PreferredSize Function(
+    BuildContext context, FlDesignConfig designInfo);
+
 class ResponsiveGuideConsumerWidget extends StatefulWidget {
   final ResponsiveWidgetBuilder builder;
-  const ResponsiveGuideConsumerWidget({Key? key, required this.builder})
-      : super(key: key);
+  const ResponsiveGuideConsumerWidget({
+    Key? key,
+    required this.builder,
+  }) : super(key: key);
 
   @override
   _ResponsiveGuideConsumerWidgetState createState() =>

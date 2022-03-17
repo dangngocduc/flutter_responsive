@@ -1,8 +1,5 @@
-import 'dart:developer' as developer;
-import 'package:example/gen/assets.gen.dart';
-import 'package:example/widget/tab_bar_item_widget.dart';
 import 'package:fl_responsive_guide/data/fl_device_target.dart';
-import 'package:fl_responsive_guide/ui/responsive_app_bar.dart';
+import 'package:fl_responsive_guide/ui/responsive_guide_consumer_widget.dart';
 import 'package:fl_responsive_guide/ui/responsive_scaffold.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +20,25 @@ class _DesignPageState extends State<DesignPage> {
       appBar: MainAppBar(
         indexTab: 0,
       ),
-      body: Container(),
+      isSupportTabBar: true,
+      body: ResponsiveGuideConsumerWidget(
+        builder: (context, designInfo) {
+          switch (designInfo.deviceTarget) {
+            case DeviceTarget.mobile:
+              return Center(
+                child: Text('Mobile App'),
+              );
+            case DeviceTarget.tablet:
+              return Center(
+                child: Text('Tablet App'),
+              );
+            case DeviceTarget.desktop:
+              return Center(
+                child: Text('Desktop App'),
+              );
+          }
+        },
+      ),
       navigation: AppDrawer(),
     );
   }

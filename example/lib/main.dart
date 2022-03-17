@@ -5,7 +5,6 @@ import 'package:fl_responsive_guide/ui/responsive_guide_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'application.dart';
-import 'home_page.dart';
 
 void main() {
   runApp(
@@ -22,20 +21,19 @@ class MyApp extends StatelessWidget {
         600: FlDesignConfig(
             body: FlSize.scale(),
             margin: FlSize.size(0),
-            layoutColumns: 1,
+            appbarHeight: 56,
             deviceTarget: DeviceTarget.mobile),
         900: FlDesignConfig(
             body: FlSize.scale(),
             margin: FlSize.size(0),
             gutters: 12,
-            navigationRailWidth: 80,
+            appbarHeight: 56,
             deviceTarget: DeviceTarget.tablet),
         double.maxFinite: FlDesignConfig(
             body: FlSize.size(621),
             margin: FlSize.scale(),
             gutters: 12,
-            layoutColumns: 3,
-            appbarHeight: 72,
+            appbarHeight: 56,
             deviceTarget: DeviceTarget.desktop)
       },
       child: Application(),

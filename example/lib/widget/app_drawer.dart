@@ -1,9 +1,7 @@
-import 'dart:developer' as developer;
 import 'package:example/gen/assets.gen.dart';
 import 'package:fl_responsive_guide/data/fl_device_target.dart';
 import 'package:fl_responsive_guide/ui/responsive_guide_consumer_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,29 +32,32 @@ class _AppDrawerState extends State<AppDrawer> {
     return ResponsiveGuideConsumerWidget(
       builder: (context, designInfo) {
         return Container(
+          height: MediaQuery.of(context).size.height,
           color: Colors.white,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (designInfo.deviceTarget != DeviceTarget.desktop)
-                _DrawerHeader(),
-              _GroupHeader(
-                content: 'Material System',
-              ),
-              ...menuItemGroup1.map((e) => _MenuItem(
-                    content: e,
-                  )),
-              Divider(
-                color: Colors.black38,
-                thickness: 0.5,
-              ),
-              _GroupHeader(
-                content: 'Material Foundation',
-              ),
-              ...menuItemGroup2.map((e) => _MenuItem(
-                    content: e,
-                  )),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (designInfo.deviceTarget != DeviceTarget.desktop)
+                  _DrawerHeader(),
+                _GroupHeader(
+                  content: 'Material System',
+                ),
+                ...menuItemGroup1.map((e) => _MenuItem(
+                      content: e,
+                    )),
+                Divider(
+                  color: Colors.black38,
+                  thickness: 0.5,
+                ),
+                _GroupHeader(
+                  content: 'Material Foundation',
+                ),
+                ...menuItemGroup2.map((e) => _MenuItem(
+                      content: e,
+                    )),
+              ],
+            ),
           ),
         );
       },
