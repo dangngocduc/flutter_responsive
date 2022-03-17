@@ -3,7 +3,7 @@
 <p align="center">
 
   <a href="https://pub.dartlang.org/packages/fl_responsive_guide">
-    <img alt="Pub Package" src="https://img.shields.io/pub/v/fl_paging.svg">
+    <img alt="Pub Package" src="https://img.shields.io/pub/v/fl_responsive_guide.svg">
   </a>
   <br/>
   <a href="https://github.com/dangngocduc/flutter_responsive">
