@@ -1,7 +1,11 @@
 name: fl_responsive_guide
-description: A new Flutter package project.
-version: 0.0.1
-homepage:
+description: A package support for build responsive application on Flutter
+
+version: 0.1.0
+homepage: https://github.com/dangngocduc/flutter_responsive
+repository: https://github.com/dangngocduc/flutter_responsive
+issue_tracker: https://github.com/dangngocduc/flutter_responsive/issues
+documentation: https://github.com/dangngocduc/flutter_responsive
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

@@ -1,6 +1,5 @@
 # fl_responsive_guide
 
-Demo
 ![Demo](demo/demo_1.gif)
 
 ## Basic
@@ -63,9 +62,28 @@ class FlSizeScale extends FlSize {}
 
 ### Breakpoints System of your application
 
+![Scaffold](demo/scaffold_demo.png)
+1: _App bars_
+2: _Navigation/Drawer_
+3: _Body_
+
+![Breakpoints](demo/breakpoints_guide.png)
+1: _Columns_
+2: _Gutters_
+3: _Margins_
+
 Về cơ bản thì việc build 1 ứng dụng responsive sẽ là việc xác định các dạng màn hình (xác định bởi breakpoint). Dựa trên breakpoint đang có để quyết định giao diện sẽ build. Do đó ta cần xác định Breakpoint cho ứng dụng của mình.
 
-Ví dụ:
+Dưới đây là 1 hướng dẫn chia breakpoint của Material Design:
+|Screen size|Margin|Body|Layout columns|
+|---|---|---|---|
+|0-599dp|16dp|Scaling|4|
+|600-904|32dp|Scaling|8|
+|905-1239|Scaling|840dp|12|
+|1240-1439|200dp|Scaling|12|
+|1440+|Scaling|1040|12|
+
+Ví dụ khi áp dụng:
 
 ```Dart
       breakpointSystems: {
