@@ -76,8 +76,7 @@ class _ResponsiveScaffoldState extends State<ResponsiveScaffold> {
               child: widget.navigation,
             )
           : null,
-      body: IntrinsicHeight(
-          child: Row(
+      body: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (designInfo.isDesktop)
@@ -87,7 +86,7 @@ class _ResponsiveScaffoldState extends State<ResponsiveScaffold> {
             ),
           Expanded(child: bodyWrapper)
         ],
-      )),
+      ),
       bottomNavigationBar: widget.footer,
     );
   }

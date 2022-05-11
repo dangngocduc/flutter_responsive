@@ -11,8 +11,11 @@ class ResponsiveBody extends StatelessWidget {
     final designInfo = ResponsiveGuide.of(context).designInfo;
     if (designInfo.body is FlSizeNumber) {
       return Container(
-        width: (designInfo.body as FlSizeNumber).number,
-        child: builder(context),
+        alignment: Alignment.topCenter,
+        child: Container(
+          width: (designInfo.body as FlSizeNumber).number,
+          child: builder(context),
+        ),
       );
     } else {
       return Container(
