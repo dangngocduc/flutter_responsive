@@ -40,10 +40,10 @@ class _ResponsiveScaffoldState extends State<ResponsiveScaffold> {
         child: widget.body,
       );
     } else {
-      bodyWrapper = Center(
+      bodyWrapper = Container(
         key: ValueKey(designInfo.deviceTarget),
         child: Container(
-          alignment: Alignment.center,
+          alignment: Alignment.topCenter,
           child: widget.body,
           constraints: BoxConstraints(
             maxWidth: (designInfo.body as FlSizeNumber).number,
