@@ -11,15 +11,19 @@ class BlogPage extends StatefulWidget {
 }
 
 class _BlogPageState extends State<BlogPage> {
+
+  late Future future;
+
+  @override
+  void initState() {
+    super.initState();
+    future = Future.delayed(...);
+  }
   @override
   Widget build(BuildContext context) {
-    return ResponsiveScaffold(
-      appBar: MainAppBar(
-        indexTab: 3,
-      ),
-      body: Container(),
-      isSupportTabBar: true,
-      navigation: AppDrawer(),
+    return FutureBuilder(
+      future: future,
+      builder: builder,
     );
   }
 }

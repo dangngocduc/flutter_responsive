@@ -6,19 +6,19 @@ import 'package:fl_responsive_guide/data/fl_size.dart';
 import 'package:fl_responsive_guide/ui/responsive_guide_widget.dart';
 
 class ResponsiveScaffold extends StatefulWidget {
-  final Widget appBar;
+  final Widget? appBar;
   final Widget body;
   final Widget? footer;
-  final Widget navigation;
+  final Widget? navigation;
   final bool isSupportTabBar;
 
   const ResponsiveScaffold({
     Key? key,
-    required this.appBar,
+    this.appBar,
     required this.body,
     this.footer,
     this.isSupportTabBar = false,
-    required this.navigation,
+    this.navigation,
   }) : super(key: key);
 
   @override
@@ -59,17 +59,21 @@ class _ResponsiveScaffoldState extends State<ResponsiveScaffold> {
         'Height : ${designInfo.appbarHeight + (designInfo.isDesktop ? 0 : (widget.isSupportTabBar ? designInfo.tabBarHeight : 0))}',
         name: 'ResponsiveScaffold');
     return Scaffold(
-      appBar: PreferredSize(
-        key: ValueKey(designInfo.deviceTarget),
-        preferredSize: Size.fromHeight(
-          designInfo.appbarHeight +
-              (designInfo.isDesktop
-                  ? 0
-                  : (widget.isSupportTabBar ? designInfo.tabBarHeight : 0)),
-        ),
-        child: widget.appBar,
-      ),
-      drawer: !designInfo.isDesktop
+      appBar: widget.appBar != null
+          ? PreferredSize(
+              key: ValueKey(designInfo.deviceTarget),
+              preferredSize: Size.fromHeight(
+                designInfo.appbarHeight +
+                    (designInfo.isDesktop
+                        ? 0
+                        : (widget.isSupportTabBar
+                            ? designInfo.tabBarHeight
+                            : 0)),
+              ),
+              child: widget.appBar!,
+            )
+          : null,
+      drawer: (!designInfo.isDesktop && widget.navigation != null)
           ? Container(
               alignment: Alignment.topCenter,
               width: designInfo.drawerWidth,

@@ -59,7 +59,8 @@ class _ResponsiveGuideWrapperState extends State<ResponsiveGuideWrapper> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        designInfo = findFlDesignConfig(constraints.maxWidth);
+        designInfo = findFlDesignConfig(constraints.maxWidth)
+            .copyWith(size: Size(constraints.minWidth, constraints.maxHeight));
         return ResponsiveGuide(
           key: key,
           child: widget.child,

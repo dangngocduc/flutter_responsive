@@ -19,17 +19,20 @@ class MyApp extends StatelessWidget {
     return ResponsiveGuideWrapper(
       breakpointSystems: {
         600: FlDesignConfig(
+            size: MediaQuery.of(context).size,
             body: FlSize.scale(),
             margin: FlSize.size(0),
             appbarHeight: 56,
             deviceTarget: DeviceTarget.mobile),
         900: FlDesignConfig(
+            size: MediaQuery.of(context).size,
             body: FlSize.scale(),
             margin: FlSize.size(0),
             gutters: 12,
             appbarHeight: 56,
             deviceTarget: DeviceTarget.tablet),
         double.maxFinite: FlDesignConfig(
+            size: MediaQuery.of(context).size,
             body: FlSize.size(621),
             margin: FlSize.scale(),
             gutters: 12,

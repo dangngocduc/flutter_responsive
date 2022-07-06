@@ -16,11 +16,13 @@ class FlDesignConfig {
   final double appbarHeight;
   final double drawerWidth;
   final double tabBarHeight;
+  final Size size;
 
   FlDesignConfig(
       {required this.margin,
       required this.body,
       required this.deviceTarget,
+      this.size = Size.infinite,
       this.navigationRailWidth,
       this.appbarHeight = kResponsiveToolBarHeight,
       this.layoutColumns = 1,
@@ -39,5 +41,20 @@ class FlDesignConfig {
 
   double requiredNavigationRailWidth() {
     return navigationRailWidth!;
+  }
+
+  FlDesignConfig copyWith({Size? size}) {
+    return FlDesignConfig(
+      margin: this.margin,
+      body: this.body,
+      deviceTarget: this.deviceTarget,
+      size: size ?? Size.infinite,
+      navigationRailWidth: this.navigationRailWidth,
+      appbarHeight: this.appbarHeight,
+      layoutColumns: this.layoutColumns,
+      drawerWidth: this.drawerWidth,
+      tabBarHeight: this.tabBarHeight,
+      gutters: this.gutters,
+    );
   }
 }
