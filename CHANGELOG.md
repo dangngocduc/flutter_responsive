@@ -13,3 +13,7 @@ feat: add size to FLConfig
 # 0.1.3
 
 feat: add size to FLConfig
+
+# 0.1.4
+
+feat: Fix bug 

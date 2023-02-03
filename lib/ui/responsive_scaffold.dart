@@ -42,6 +42,7 @@ class _ResponsiveScaffoldState extends State<ResponsiveScaffold> {
     } else {
       bodyWrapper = Container(
         key: ValueKey(designInfo.deviceTarget),
+        alignment: Alignment.topCenter,
         child: Container(
           alignment: Alignment.topCenter,
           child: widget.body,
@@ -88,7 +89,9 @@ class _ResponsiveScaffoldState extends State<ResponsiveScaffold> {
               width: designInfo.drawerWidth,
               child: widget.navigation,
             ),
-          Expanded(child: bodyWrapper)
+          Expanded(
+            child: bodyWrapper,
+          )
         ],
       ),
       bottomNavigationBar: widget.footer,
